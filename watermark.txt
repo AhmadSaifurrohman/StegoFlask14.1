@@ -60,21 +60,19 @@ def encrypt():
         # Baca file PDF baru yang telah dibuat sebagai halaman baru
         halaman_baru = PyPDF2.PdfReader(buffer).pages[0]
         #halaman_baru = halaman_pdf
+        # Merge halaman baru yang telah disisipi pesan dengan halaman asli
+        halaman_baru.merge_page(halaman_pdf)
 
         # Menambahkan watermark
         watermark_file = io.BytesIO()
         watermark = canvas.Canvas(watermark_file)
-        watermark.setFillColor(colors.toColor("#6c757d"))
-        watermark.setFont("Helvetica-Bold", 68)
+        watermark.setFillColor(colors.toColor("#647E68"))
+        watermark.setFont("Helvetica", 68)
         watermark.rotate(45)
-        watermark.drawString(260, 60, "[ WATERMARK ]")  # add your watermark text here
+        watermark.drawString(370, 200, "[ WATERMARK ]")  # add your watermark text here
         watermark.save()
         watermark_page = PyPDF2.PdfReader(watermark_file)
         halaman_baru.merge_page(watermark_page.pages[0])
-
-        # Merge halaman baru yang telah disisipi pesan dengan halaman asli
-        halaman_baru.merge_page(halaman_pdf)
-
         # Tambahkan halaman yang telah disisipi pesan ke dalam objek pdf_writer
         pdf_writer.add_page(halaman_baru)
 
