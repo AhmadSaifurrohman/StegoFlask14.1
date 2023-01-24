@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Steganografi Lineshifting</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/assets/css/style.css">
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="container-fluid">
+      <h1 class="navbar-brand" style="color: white; font-size: 30px;">STEGANOGRAFI LINESHIFTING</h1>
+    </div>
+  </nav>
+  <div class="card m-5">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a id="encode" onclick="encode()" class="nav-link active" aria-current="true" href="#">Encode</a>
+        </li>
+        <li class="nav-item">
+          <a id="decode" onclick="decode()" class="nav-link" aria-current="true" href="#">Decode</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-body encode-menu" id="encodeMenu">
+      <form action="/encrypt" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="pdf_path" class="form-label">Upload dokumen (pdf) :</label>
+                <input class="form-control" type="file" id="file_pdf" name="file_pdf">
+            </div>
+            <div class="mb-3">
+                <!--<label for="pesan">Masukkan pesan yang akan disembunyikan:</label>-->
+                <input class="form-control" type="text" id="pesan" name="pesan" placeholder="Masukkan Pesan">
+            </div>
+            <div class="mb-3">
+                <!--<label for="kunci">Masukkan kunci enkripsi:</label>-->
+                <input class="form-control" type="password" id="kunci" name="kunci" placeholder="Masukkan Kunci">
+            </div>
+            <!--<input type="submit" value="Encrypt">-->
+            <button type="submit" class="btn" style="margin-left: 93.5%; background-color: #F5EDCE;">Submit</button>
+        </form>
+    </div>
+
+    <div class="card-body decode-menu" id="decodeMenu">
+      <form id="formDecrypt" action="/decrypt" method="post" enctype="multipart/form-data" onsubmit="return submitFormDecrypt()">
+            <div class="mb-3">
+                <label for="file_pdf" class="form-label">Upload dokumen steganografi (pdf) :</label>
+                <input class="form-control" type="file" id="file_pdf" name="file_pdf">
+            </div>
+            <div class="mb-3">
+                <!--<label for="kunci">Masukkan kunci dekripsi:</label>-->
+                <input class="form-control" type="password" id="kunci" name="kunci" placeholder="Masukkan Kunci">
+            </div>
+            <!--<input type="submit" value="Decrypt">-->
+            <!-- <button type="submit" class="btn mb-3" style="margin-left: 93.5%; background-color: #F5EDCE;">Submit</button> -->
+            <button type="submit" class="btn mb-3" onclick="submitFormDecrypt()"
+                    style="margin-left: 93.5%; background-color: #F5EDCE;">Submit</button>
+
+          <div class="mb-3">
+                <label for="kunci" class="form-label">Pesan rahasia :</label>
+                <p>{{pesan}}</p>
+            </div>
+        </form>
+    </div>
+  </div>
+
+
+  <!-- Site footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2023 Steganografi Lineshifting Reserved by
+            <a href="#">Ahmad Saifurrohman</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+
+  <script src="../static/assets/js/script.js"></script>
+</body>
+
+</html>
